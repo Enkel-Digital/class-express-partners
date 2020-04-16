@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "Past-Week-Earning-Comparison",
+  name: "past-week-earning-comparison",
   data() {
     return {
       labels: ["SU", "MO", "TU", "WED", "TH", "FR", "SA"],
