@@ -9,7 +9,7 @@
       </v-list-item>
 
       <v-list class="transparent">
-        <v-list-item v-for="item in earnings" :key="item.day">
+        <v-list-item v-for="item in earnings">
           <v-list-item-title>{{ item.week }}</v-list-item-title>
 
           <!-- <v-list-item-icon>
