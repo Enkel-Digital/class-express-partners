@@ -5,13 +5,9 @@
         <v-list-item-content>
           <p class="overline">your points</p>
 
-          <v-list-item-title class="headline mb-1">
-            {{ points.left }} / {{ points.total }} points
-          </v-list-item-title>
+          <v-list-item-title class="headline mb-1">{{ points.left }} / {{ points.total }} points</v-list-item-title>
 
-          <v-list-item-subtitle>
-            Period ends on: {{ moment.unix(points.period.end).format("L") }}
-          </v-list-item-subtitle>
+          <v-list-item-subtitle>Period ends on: {{ moment.unix(points.period.end).format("L") }}</v-list-item-subtitle>
         </v-list-item-content>
 
         <v-btn :to="{ name: 'topup' }" color="primary">topup</v-btn>
@@ -41,7 +37,7 @@
 
         <v-btn :to="{ name: 'topup' }" color="primary">topup</v-btn>
       </v-list-item>
-    </v-card> -->
+    </v-card>-->
 
     <!-- If the user does not have a plan yet -->
     <!-- <v-card v-else id="points-card" class="mx-auto" max-width="344" outlined>
@@ -60,7 +56,7 @@
 
         <v-btn :to="{ name: 'subscription' }" color="primary">plans</v-btn>
       </v-list-item>
-    </v-card> -->
+    </v-card>-->
   </v-responsive>
 </template>
 
