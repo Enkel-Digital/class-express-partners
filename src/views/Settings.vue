@@ -2,17 +2,6 @@
   <v-content class="settings">
     <!-- Add a loader banner showing the update process and notify user if failed. -->
 
-    <v-app-bar app color="orange lighten-1" flat dark fixed>
-      <BackBtn />
-      <v-toolbar-title>Settings</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-list>
       <v-subheader>
         Account Details
@@ -159,14 +148,10 @@
  */
 
 import logout from "@/controllers/logout";
-import BackBtn from "@/components/BackBtn";
 import { mapState } from "vuex";
 
 export default {
   name: "settings",
-  components: {
-    BackBtn,
-  },
   data() {
     // Use JSONify since the values in state are all JSONifyable without any complex structures.
     const settings = JSON.parse(
