@@ -8,19 +8,31 @@
       </v-subheader>
 
       <v-list-item ripple>
-        Update your email
+        Profile Photo
         <v-spacer />
         <v-icon>mdi-chevron-right</v-icon>
       </v-list-item>
 
       <v-list-item ripple>
-        Update your number
+        Name
         <v-spacer />
         <v-icon>mdi-chevron-right</v-icon>
       </v-list-item>
 
       <v-list-item ripple>
-        Emergency Contact
+        Email
+        <v-spacer />
+        <v-icon>mdi-chevron-right</v-icon>
+      </v-list-item>
+
+      <v-list-item ripple>
+        Password
+        <v-spacer />
+        <v-icon>mdi-chevron-right</v-icon>
+      </v-list-item>
+
+      <v-list-item ripple>
+        Contact
         <v-spacer />
         <v-icon>mdi-chevron-right</v-icon>
       </v-list-item>
@@ -105,7 +117,7 @@
 
       <!-- Opens as a dropdown menu with our contact number and email -->
       <v-list-item ripple>
-        Contact us!
+        Contact us
         <v-spacer />
         <v-icon>mdi-chevron-right</v-icon>
       </v-list-item>
@@ -114,11 +126,7 @@
       <v-list-item ripple>
         <span
           style="text-align: left; color: rgba(0, 0, 0, 0.6);"
-          v-html="
-            `Terms & Conditions
-            <br />
-            Community Guidelines`
-          "
+          v-html="`Terms & Conditions`"
         ></span>
         <v-spacer />
         <v-icon>mdi-chevron-right</v-icon>
