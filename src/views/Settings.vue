@@ -7,42 +7,28 @@
         Account Details
       </v-subheader>
 
-      <v-list-item ripple>
-        Profile Photo
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
-
-      <v-list-item ripple>
-        Name
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
-
-      <v-list-item ripple>
-        Email
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
-
-      <v-list-item ripple>
-        Password
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
-
-      <v-list-item ripple>
-        Contact
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
+      <v-list-group
+        v-for="accountdetail in accountdetails"
+        :key="accountdetail.title"
+        v-model="accountdetail.active"
+        :prepend-icon="accountdetail.action"
+        no-action
+      >
+        <template v-slot:activator>
+          <v-list-item-content>
+            <v-list-item-title class="text-left">
+              {{ accountdetail.title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </template>
+      </v-list-group>
     </v-list>
 
     <v-divider></v-divider>
 
     <v-list>
       <v-subheader colors="orange">
-        Notifications:
+        Notifications
       </v-subheader>
 
       <div
@@ -80,7 +66,7 @@
 
     <v-list>
       <v-subheader>
-        Billing:
+        Billing
       </v-subheader>
 
       <v-list-item ripple>
@@ -169,6 +155,29 @@ export default {
     return {
       // settingsChanged: false,
       settings,
+
+      accountdetails: [
+        {
+          action: "mdi-account-circle",
+          title: "Profile Photo",
+        },
+        {
+          action: "mdi-account",
+          title: "Username",
+        },
+        {
+          action: "mdi-email",
+          title: "Email Address",
+        },
+        {
+          action: "mdi-key-variant",
+          title: "Change Password",
+        },
+        {
+          action: "mdi-cellphone",
+          title: "Contact Number",
+        },
+      ],
     };
   },
   watch: {
