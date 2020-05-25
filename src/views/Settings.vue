@@ -21,6 +21,15 @@
             </v-list-item-title>
           </v-list-item-content>
         </template>
+
+        <v-list-item
+          v-for="subItem in accountdetail.items"
+          :key="subItem.title"
+        >
+          <v-list-item-content>
+            <v-list-item-title v-text="subItem.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list-group>
     </v-list>
 
@@ -60,26 +69,6 @@
           class="ma-1 pa-0"
         ></v-checkbox>
       </div>
-    </v-list>
-
-    <v-divider></v-divider>
-
-    <v-list>
-      <v-subheader>
-        Billing
-      </v-subheader>
-
-      <v-list-item ripple>
-        See Billing info
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
-
-      <v-list-item ripple>
-        View recent charges
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
     </v-list>
 
     <v-divider></v-divider>
@@ -160,22 +149,27 @@ export default {
         {
           action: "mdi-account-circle",
           title: "Profile Photo",
+          items: [{ title: "Testing 1" }],
         },
         {
           action: "mdi-account",
           title: "Username",
+          items: [{ title: "Testing 2" }, { title: "Testing 2" }],
         },
         {
           action: "mdi-email",
           title: "Email Address",
+          items: [{ title: "Testing 3" }],
         },
         {
           action: "mdi-key-variant",
           title: "Change Password",
+          items: [{ title: "Testing 4" }],
         },
         {
           action: "mdi-cellphone",
           title: "Contact Number",
+          items: [{ title: "Testing 5" }],
         },
       ],
     };
