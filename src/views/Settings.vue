@@ -7,28 +7,71 @@
         Account Details
       </v-subheader>
 
-      <v-list-group
-        v-for="accountdetail in accountdetails"
-        :key="accountdetail.title"
-        v-model="accountdetail.active"
-        :prepend-icon="accountdetail.action"
-        no-action
-      >
+      <v-list-group>
         <template v-slot:activator>
-          <v-list-item-content>
-            <v-list-item-title class="text-left">
-              {{ accountdetail.title }}
-            </v-list-item-title>
-          </v-list-item-content>
+          <v-icon class="pr-8">mdi-account-circle</v-icon>
+          <v-list-item-title class="text-left">
+            Profile Photo
+          </v-list-item-title>
         </template>
 
-        <v-list-item
-          v-for="subItem in accountdetail.items"
-          :key="subItem.title"
-        >
-          <v-list-item-content>
-            <v-list-item-title v-text="subItem.title"></v-list-item-title>
-          </v-list-item-content>
+        <v-list-item>
+          <v-list-item-title class="text-center"> </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+
+      <v-list-group>
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-account</v-icon>
+
+          <v-list-item-title class="text-left">
+            Username
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center"> </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+
+      <v-list-group>
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-email</v-icon>
+
+          <v-list-item-title class="text-left">
+            Email Address
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center"> </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+
+      <v-list-group>
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-key-variant</v-icon>
+
+          <v-list-item-title class="text-left">
+            Change Password
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center"> </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+
+      <v-list-group>
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-cellphone</v-icon>
+          <v-list-item-title class="text-left">
+            Contact Number
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center"> </v-list-item-title>
         </v-list-item>
       </v-list-group>
     </v-list>
@@ -144,34 +187,6 @@ export default {
     return {
       // settingsChanged: false,
       settings,
-
-      accountdetails: [
-        {
-          action: "mdi-account-circle",
-          title: "Profile Photo",
-          items: [{ title: "Testing 1" }],
-        },
-        {
-          action: "mdi-account",
-          title: "Username",
-          items: [{ title: "Testing 2" }, { title: "Testing 2" }],
-        },
-        {
-          action: "mdi-email",
-          title: "Email Address",
-          items: [{ title: "Testing 3" }],
-        },
-        {
-          action: "mdi-key-variant",
-          title: "Change Password",
-          items: [{ title: "Testing 4" }],
-        },
-        {
-          action: "mdi-cellphone",
-          title: "Contact Number",
-          items: [{ title: "Testing 5" }],
-        },
-      ],
     };
   },
   watch: {
