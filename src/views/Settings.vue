@@ -53,7 +53,7 @@
           <v-icon class="pr-8">mdi-key-variant</v-icon>
 
           <v-list-item-title class="text-left">
-            Change Password
+            Password
           </v-list-item-title>
         </template>
 
@@ -84,6 +84,7 @@
       </v-subheader>
 
       <div
+        class="ma-1 pa-0 ms-4"
         v-ripple
         @click="
           settings.notifications.mobileNotification = !settings.notifications
@@ -93,12 +94,14 @@
         <v-checkbox
           v-model="settings.notifications.mobileNotification"
           readonly
+          color="indigo darken-3"
           label="Mobile notifications"
-          class="ma-1 pa-0"
+          class="black-text"
         ></v-checkbox>
       </div>
 
       <div
+        class="ma-1 pa-0 ms-4"
         v-ripple
         @click="
           settings.notifications.emailNotification = !settings.notifications
@@ -108,8 +111,9 @@
         <v-checkbox
           v-model="settings.notifications.emailNotification"
           readonly
+          color="indigo darken-3"
           label="Email notifications"
-          class="ma-1 pa-0"
+          class="black-text"
         ></v-checkbox>
       </div>
     </v-list>
@@ -204,4 +208,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.black-text /deep/ label {
+  color: black;
+}
+</style>
