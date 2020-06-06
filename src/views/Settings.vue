@@ -30,7 +30,20 @@
         </template>
 
         <v-list-item>
-          <v-list-item-title class="text-center"> </v-list-item-title>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="user.name"
+                  label="USERNAME"
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Save Changes</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
@@ -205,6 +218,7 @@ export default {
   methods: {
     logout,
   },
+  computed: mapState(["user"]),
 };
 </script>
 
