@@ -35,7 +35,7 @@
               <v-col cols="12" sm="8">
                 <v-text-field
                   v-model="user.name"
-                  label="USERNAME"
+                  label="Username"
                   clearable
                 ></v-text-field>
               </v-col>
@@ -57,7 +57,24 @@
         </template>
 
         <v-list-item>
-          <v-list-item-title class="text-center"> </v-list-item-title>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="user.email"
+                  label="Current Email"
+                  readonly
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field label="Enter New Email" clearable></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Save Changes</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
