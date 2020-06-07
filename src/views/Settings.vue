@@ -16,7 +16,16 @@
         </template>
 
         <v-list-item>
-          <v-list-item-title class="text-center"> </v-list-item-title>
+          <v-list-item-title class="text-center">
+            <v-avatar size="200">
+              <img alt="Avatar" :src="user.imageSrc" />
+            </v-avatar>
+            <v-row justify="space-around" class="mt-2">
+              <v-btn color="grey lighten-2" class="mb-4">
+                <v-icon left>mdi-camera-plus</v-icon>Change image
+              </v-btn>
+            </v-row>
+          </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
@@ -31,7 +40,7 @@
 
         <v-list-item>
           <v-list-item-title class="text-center">
-            <v-card class="mx-auto" max-width="600" outlined>
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
               <v-col cols="12" sm="8">
                 <v-text-field
                   v-model="user.name"
@@ -58,7 +67,7 @@
 
         <v-list-item>
           <v-list-item-title class="text-center">
-            <v-card class="mx-auto" max-width="600" outlined>
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
               <v-col cols="12" sm="8">
                 <v-text-field
                   v-model="user.email"
