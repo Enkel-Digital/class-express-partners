@@ -77,7 +77,11 @@
               </v-col>
 
               <v-col cols="12" sm="8">
-                <v-text-field label="Enter New Email" clearable></v-text-field>
+                <v-text-field
+                  type="email"
+                  label="Enter New Email"
+                  clearable
+                ></v-text-field>
               </v-col>
               <v-card-actions>
                 <v-btn color="primary" text>Verify Email</v-btn>
@@ -121,7 +125,12 @@
               </v-col>
 
               <v-col cols="12" sm="8">
-                <v-text-field label="Enter New Number" clearable></v-text-field>
+                <v-text-field
+                  type="tel"
+                  :rules="numberRules"
+                  label="Enter New Number"
+                  clearable
+                ></v-text-field>
               </v-col>
               <v-card-actions>
                 <v-btn color="primary" text>Verify Number</v-btn>
@@ -247,7 +256,8 @@ export default {
     return {
       // settingsChanged: false,
       settings,
-      number: "1234 5678",
+      number: "12345678",
+      numberRules: [(v) => (v && v.length == 8) || "Number is invalid"],
     };
   },
   watch: {
