@@ -80,7 +80,7 @@
                 <v-text-field label="Enter New Email" clearable></v-text-field>
               </v-col>
               <v-card-actions>
-                <v-btn color="primary" text>Save Changes</v-btn>
+                <v-btn color="primary" text>Verify Email</v-btn>
               </v-card-actions>
             </v-card>
           </v-list-item-title>
@@ -110,7 +110,24 @@
         </template>
 
         <v-list-item>
-          <v-list-item-title class="text-center"> </v-list-item-title>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="number"
+                  label="Number"
+                  readonly
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field label="Enter New Number" clearable></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Verify Number</v-btn>
+              </v-card-actions>
+            </v-card></v-list-item-title
+          >
         </v-list-item>
       </v-list-group>
     </v-list>
@@ -230,6 +247,7 @@ export default {
     return {
       // settingsChanged: false,
       settings,
+      number: "1234 5678",
     };
   },
   watch: {
