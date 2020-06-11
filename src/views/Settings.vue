@@ -43,6 +43,7 @@
             <v-card class="mx-auto mb-4" max-width="600" outlined>
               <v-col cols="12" sm="8">
                 <v-text-field
+                  type="text"
                   v-model="user.name"
                   label="Username"
                   clearable
@@ -101,7 +102,58 @@
         </template>
 
         <v-list-item>
-          <v-list-item-title class="text-center"> </v-list-item-title>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="currentPassword"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required]"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Current Password"
+                  value=""
+                  prepend-icon="mdi-lock"
+                  @click:append="show1 = !show1"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="newPassword"
+                  :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min]"
+                  :type="show2 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Enter New Password"
+                  value=""
+                  prepend-icon="mdi-lock"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show2 = !show2"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="reNewPassword"
+                  :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min, rules.passwordMatch]"
+                  :type="show3 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Re-enter New Password"
+                  value=""
+                  prepend-icon="mdi-lock"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show3 = !show3"
+                ></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Change Password</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
@@ -258,6 +310,16 @@ export default {
       settings,
       number: "12345678",
       numberRules: [(v) => (v && v.length == 8) || "Number is invalid"],
+      show1: false,
+      show2: false,
+      show3: false,
+      password: "Password",
+      rules: {
+        required: (value) => !!value || "Required.",
+        min: (v) => v.length >= 8 || "Min 8 characters",
+        passwordMatch: () =>
+          this.newPassword === this.reNewPassword || "Password must match",
+      },
     };
   },
   watch: {
