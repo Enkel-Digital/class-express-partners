@@ -20,16 +20,18 @@
             <v-avatar size="200">
               <img alt="Avatar" :src="user.imageSrc" />
             </v-avatar>
-            <v-row justify="space-around" class="mt-2">
-              <v-btn color="grey lighten-2" class="mb-4">
-                <v-icon left>mdi-camera-plus</v-icon>Change image
-              </v-btn>
-            </v-row>
+            <v-card-actions>
+              <v-row justify="space-around" class="mt-2">
+                <v-btn color="grey lighten-2" class="mb-4">
+                  <v-icon left>mdi-camera-plus</v-icon>Change image
+                </v-btn>
+              </v-row>
+            </v-card-actions>
           </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
-      <v-list-group>
+      <v-list-group v-model="closeUsername" :close-on-content-click="false">
         <template v-slot:activator>
           <v-icon class="pr-8">mdi-account</v-icon>
 
@@ -51,13 +53,14 @@
               </v-col>
               <v-card-actions>
                 <v-btn color="primary" text>Save Changes</v-btn>
+                <v-btn text @click="closeUsername = false">Cancel</v-btn>
               </v-card-actions>
             </v-card>
           </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
-      <v-list-group>
+      <v-list-group v-model="closeEmailAddress" :close-on-content-click="false">
         <template v-slot:activator>
           <v-icon class="pr-8">mdi-email</v-icon>
 
@@ -86,13 +89,14 @@
               </v-col>
               <v-card-actions>
                 <v-btn color="primary" text>Verify Email</v-btn>
+                <v-btn text @click="closeEmailAddress = false">Cancel</v-btn>
               </v-card-actions>
             </v-card>
           </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
-      <v-list-group>
+      <v-list-group v-model="closePassword" :close-on-content-click="false">
         <template v-slot:activator>
           <v-icon class="pr-8">mdi-key-variant</v-icon>
 
@@ -151,13 +155,17 @@
               </v-col>
               <v-card-actions>
                 <v-btn color="primary" text>Change Password</v-btn>
+                <v-btn text @click="closePassword = false">Cancel</v-btn>
               </v-card-actions>
             </v-card>
           </v-list-item-title>
         </v-list-item>
       </v-list-group>
 
-      <v-list-group>
+      <v-list-group
+        v-model="closeContactNumber"
+        :close-on-content-click="false"
+      >
         <template v-slot:activator>
           <v-icon class="pr-8">mdi-cellphone</v-icon>
           <v-list-item-title class="text-left">
@@ -186,6 +194,7 @@
               </v-col>
               <v-card-actions>
                 <v-btn color="primary" text>Verify Number</v-btn>
+                <v-btn text @click="closeContactNumber = false">Cancel</v-btn>
               </v-card-actions>
             </v-card></v-list-item-title
           >
@@ -308,6 +317,10 @@ export default {
     return {
       // settingsChanged: false,
       settings,
+      closeUsername: false,
+      closeEmailAddress: false,
+      closePassword: false,
+      closeContactNumber: false,
       number: "12345678",
       numberRules: [(v) => (v && v.length == 8) || "Number is invalid"],
       show1: false,
