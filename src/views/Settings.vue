@@ -7,7 +7,7 @@
         Account Details
       </v-subheader>
 
-      <v-list-group>
+      <v-list-group v-model="closeProfilePhoto" :close-on-content-click="false">
         <template v-slot:activator>
           <v-icon class="pr-8">mdi-account-circle</v-icon>
           <v-list-item-title class="text-left">
@@ -16,15 +16,16 @@
         </template>
 
         <v-list-item>
-          <v-list-item-title class="text-center">
+          <v-list-item-title class="text-center mb-4">
             <v-avatar size="200">
               <img alt="Avatar" :src="user.imageSrc" />
             </v-avatar>
             <v-card-actions>
-              <v-row justify="space-around" class="mt-2">
-                <v-btn color="grey lighten-2" class="mb-4">
-                  <v-icon left>mdi-camera-plus</v-icon>Change image
+              <v-row align="center" justify="center">
+                <v-btn color="grey lighten-2">
+                  <v-icon left>mdi-camera-plus</v-icon>Edit image
                 </v-btn>
+                <v-btn text @click="closeProfilePhoto = false">Cancel</v-btn>
               </v-row>
             </v-card-actions>
           </v-list-item-title>
@@ -317,6 +318,7 @@ export default {
     return {
       // settingsChanged: false,
       settings,
+      closeProfilePhoto: false,
       closeUsername: false,
       closeEmailAddress: false,
       closePassword: false,
