@@ -2,49 +2,216 @@
   <v-content class="settings">
     <!-- Add a loader banner showing the update process and notify user if failed. -->
 
-    <v-app-bar app color="orange lighten-1" flat dark fixed>
-      <BackBtn />
-      <v-toolbar-title>Settings</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-list>
       <v-subheader>
         Account Details
       </v-subheader>
 
-      <v-list-item ripple>
-        Update your email
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
+      <v-list-group v-model="closeProfilePhoto" :close-on-content-click="false">
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-account-circle</v-icon>
+          <v-list-item-title class="text-left">
+            Profile Photo
+          </v-list-item-title>
+        </template>
 
-      <v-list-item ripple>
-        Update your number
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
+        <v-list-item>
+          <v-list-item-title class="text-center mb-4">
+            <v-avatar size="200">
+              <img alt="Avatar" :src="user.imageSrc" />
+            </v-avatar>
+            <v-card-actions>
+              <v-row align="center" justify="center">
+                <v-btn color="grey lighten-2">
+                  <v-icon left>mdi-camera-plus</v-icon>Edit image
+                </v-btn>
+                <v-btn text @click="closeProfilePhoto = false">Cancel</v-btn>
+              </v-row>
+            </v-card-actions>
+          </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
 
-      <v-list-item ripple>
-        Emergency Contact
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
+      <v-list-group v-model="closeUsername" :close-on-content-click="false">
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-account</v-icon>
+
+          <v-list-item-title class="text-left">
+            Username
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  type="text"
+                  v-model="user.name"
+                  label="Username"
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Save Changes</v-btn>
+                <v-btn text @click="closeUsername = false">Cancel</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+
+      <v-list-group v-model="closeEmailAddress" :close-on-content-click="false">
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-email</v-icon>
+
+          <v-list-item-title class="text-left">
+            Email Address
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="user.email"
+                  label="Current Email"
+                  readonly
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  type="email"
+                  label="Enter New Email"
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Verify Email</v-btn>
+                <v-btn text @click="closeEmailAddress = false">Cancel</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+
+      <v-list-group v-model="closePassword" :close-on-content-click="false">
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-key-variant</v-icon>
+
+          <v-list-item-title class="text-left">
+            Password
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="currentPassword"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required]"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Current Password"
+                  value=""
+                  prepend-icon="mdi-lock"
+                  @click:append="show1 = !show1"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="newPassword"
+                  :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min]"
+                  :type="show2 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Enter New Password"
+                  value=""
+                  prepend-icon="mdi-lock"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show2 = !show2"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="reNewPassword"
+                  :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min, rules.passwordMatch]"
+                  :type="show3 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Re-enter New Password"
+                  value=""
+                  prepend-icon="mdi-lock"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show3 = !show3"
+                ></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Change Password</v-btn>
+                <v-btn text @click="closePassword = false">Cancel</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+
+      <v-list-group
+        v-model="closeContactNumber"
+        :close-on-content-click="false"
+      >
+        <template v-slot:activator>
+          <v-icon class="pr-8">mdi-cellphone</v-icon>
+          <v-list-item-title class="text-left">
+            Contact Number
+          </v-list-item-title>
+        </template>
+
+        <v-list-item>
+          <v-list-item-title class="text-center">
+            <v-card class="mx-auto mb-4" max-width="600" outlined>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  v-model="number"
+                  label="Number"
+                  readonly
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="8">
+                <v-text-field
+                  type="tel"
+                  :rules="numberRules"
+                  label="Enter New Number"
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-card-actions>
+                <v-btn color="primary" text>Verify Number</v-btn>
+                <v-btn text @click="closeContactNumber = false">Cancel</v-btn>
+              </v-card-actions>
+            </v-card></v-list-item-title
+          >
+        </v-list-item>
+      </v-list-group>
     </v-list>
 
     <v-divider></v-divider>
 
     <v-list>
       <v-subheader colors="orange">
-        Notifications:
+        Notifications
       </v-subheader>
 
       <div
+        class="ma-1 pa-0 ms-4"
         v-ripple
         @click="
           settings.notifications.mobileNotification = !settings.notifications
@@ -54,12 +221,14 @@
         <v-checkbox
           v-model="settings.notifications.mobileNotification"
           readonly
+          color="indigo darken-3"
           label="Mobile notifications"
-          class="ma-1 pa-0"
+          class="black-text"
         ></v-checkbox>
       </div>
 
       <div
+        class="ma-1 pa-0 ms-4"
         v-ripple
         @click="
           settings.notifications.emailNotification = !settings.notifications
@@ -69,30 +238,11 @@
         <v-checkbox
           v-model="settings.notifications.emailNotification"
           readonly
+          color="indigo darken-3"
           label="Email notifications"
-          class="ma-1 pa-0"
+          class="black-text"
         ></v-checkbox>
       </div>
-    </v-list>
-
-    <v-divider></v-divider>
-
-    <v-list>
-      <v-subheader>
-        Billing:
-      </v-subheader>
-
-      <v-list-item ripple>
-        See Billing info
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
-
-      <v-list-item ripple>
-        View recent charges
-        <v-spacer />
-        <v-icon>mdi-chevron-right</v-icon>
-      </v-list-item>
     </v-list>
 
     <v-divider></v-divider>
@@ -116,7 +266,7 @@
 
       <!-- Opens as a dropdown menu with our contact number and email -->
       <v-list-item ripple>
-        Contact us!
+        Contact us
         <v-spacer />
         <v-icon>mdi-chevron-right</v-icon>
       </v-list-item>
@@ -125,11 +275,7 @@
       <v-list-item ripple>
         <span
           style="text-align: left; color: rgba(0, 0, 0, 0.6);"
-          v-html="
-            `Terms & Conditions
-            <br />
-            Community Guidelines`
-          "
+          v-html="`Terms & Conditions`"
         ></span>
         <v-spacer />
         <v-icon>mdi-chevron-right</v-icon>
@@ -159,14 +305,10 @@
  */
 
 import logout from "@/controllers/logout";
-import BackBtn from "@/components/BackBtn";
 import { mapState } from "vuex";
 
 export default {
   name: "settings",
-  components: {
-    BackBtn,
-  },
   data() {
     // Use JSONify since the values in state are all JSONifyable without any complex structures.
     const settings = JSON.parse(
@@ -176,6 +318,23 @@ export default {
     return {
       // settingsChanged: false,
       settings,
+      closeProfilePhoto: false,
+      closeUsername: false,
+      closeEmailAddress: false,
+      closePassword: false,
+      closeContactNumber: false,
+      number: "12345678",
+      numberRules: [(v) => (v && v.length == 8) || "Number is invalid"],
+      show1: false,
+      show2: false,
+      show3: false,
+      password: "Password",
+      rules: {
+        required: (value) => !!value || "Required.",
+        min: (v) => v.length >= 8 || "Min 8 characters",
+        passwordMatch: () =>
+          this.newPassword === this.reNewPassword || "Password must match",
+      },
     };
   },
   watch: {
@@ -190,7 +349,12 @@ export default {
   methods: {
     logout,
   },
+  computed: mapState(["user"]),
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.black-text /deep/ label {
+  color: black;
+}
+</style>
