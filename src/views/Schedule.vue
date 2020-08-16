@@ -4,9 +4,14 @@
       <v-col>
         <v-sheet height="64">
           <v-toolbar flat color="white">
-            <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday"
-              >Focus</v-btn
+            <v-btn
+              outlined
+              class="mr-4"
+              color="grey darken-2"
+              @click="setToday"
             >
+              Focus
+            </v-btn>
             <v-btn fab text small color="grey darken-2" @click="prev">
               <v-icon small>mdi-chevron-left</v-icon>
             </v-btn>
@@ -14,7 +19,9 @@
               <v-icon small>mdi-chevron-right</v-icon>
             </v-btn>
             <v-toolbar-title>{{ title }}</v-toolbar-title>
+
             <v-spacer></v-spacer>
+
             <v-menu bottom right>
               <template v-slot:activator="{ on }">
                 <v-btn outlined color="grey darken-2" v-on="on">
@@ -36,6 +43,7 @@
             </v-menu>
           </v-toolbar>
         </v-sheet>
+
         <v-sheet id="scroll">
           <!-- @todo fix calendar alignment -->
           <v-calendar
@@ -69,7 +77,7 @@
                 </v-btn>
               </v-toolbar>
               <v-card-text>
-                <span v-html="selectedEvent.details"></span>
+                <span v-html="selectedEvent.description" />
               </v-card-text>
               <v-card-actions>
                 <v-btn text color="secondary" @click="selectedOpen = false">
@@ -108,35 +116,48 @@ export default {
         start: "2020-08-16 09:00",
         end: "2020-08-19 10:00",
         color: "red",
+        description: "test test hello",
       },
       {
         name: "Weekly Meeting",
         start: "2020-08-16 09:00",
         end: "2020-08-19 10:00",
         color: "blue",
+        description: "test hello",
       },
       {
         name: "Weekly Meeting",
         start: "2020-08-16 09:00",
         end: "2020-08-19 10:00",
         color: "red",
+        description: "test test hello",
       },
       {
         name: "Weekly Meeting",
         start: "2020-08-16 09:00",
         end: "2020-08-19 10:00",
         color: "blue",
+        description: "test test hello",
       },
       {
         name: "Weekly Meeting",
         start: "2020-08-25 09:00",
         end: "2020-08-30 10:00",
         color: "green",
+        description: "test test hello",
       },
       {
         name: "Weekly Meeting",
         start: "2020-08-13 09:00",
         color: "pink",
+        description: "test test hello",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-14 18:00",
+        end: "2020-08-15 10:00",
+        color: "pink",
+        description: "test test hello",
       },
     ],
   }),
