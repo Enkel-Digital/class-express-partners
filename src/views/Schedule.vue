@@ -41,6 +41,7 @@
           <v-calendar
             ref="calendar"
             v-model="focus"
+            :events="events"
             color="primary"
             :weekdays="weekdays"
             :type="type"
@@ -69,6 +70,37 @@ export default {
     end: null,
 
     selectedElement: null,
+    events: [
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-25 09:00",
+        end: "2020-08-30 10:00",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-13 09:00",
+      },
+    ],
   }),
   computed: {
     title() {
