@@ -41,6 +41,8 @@
           <v-calendar
             ref="calendar"
             v-model="focus"
+            :events="events"
+            :event-color="getEventColor"
             color="primary"
             :weekdays="weekdays"
             :type="type"
@@ -69,6 +71,43 @@ export default {
     end: null,
 
     selectedElement: null,
+    events: [
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+        color: "red",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+        color: "blue",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+        color: "red",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-16 09:00",
+        end: "2020-08-19 10:00",
+        color: "blue",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-25 09:00",
+        end: "2020-08-30 10:00",
+        color: "green",
+      },
+      {
+        name: "Weekly Meeting",
+        start: "2020-08-13 09:00",
+        color: "pink",
+      },
+    ],
   }),
   computed: {
     title() {
@@ -145,6 +184,9 @@ export default {
             a.getMonth() + 1
           }-${a.getDate()} ${a.getHours()}:${a.getMinutes()}`
         : `${a.getFullYear()}-${a.getMonth() + 1}-${a.getDate()}`;
+    },
+    getEventColor(event) {
+      return event.color;
     },
   },
 };
